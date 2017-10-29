@@ -1,2 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Search for a book</h1>
+<%= form_tag(root_path, method: :get) do %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+<h1>Some books that we have</h1>
+<% @books.each do |book| %>
+<p><%= book.title %> by <%= book.author %></p>
+<ul style="list-style-type: none;"">
+  <li>Description : <%= book.description %></li>
+
+<li>Date released : <%= book.released_year %></li>
+<li>Picture : <%= book.thumbnail %></li>
+<p>Added by User <%= book.user_id  %></p>
+<% end %>
+</ul>
